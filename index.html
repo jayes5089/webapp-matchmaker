@@ -1,0 +1,182 @@
+<!--
+    Project: MatchMaker Web Application
+    Written by: Jason Yescas
+    Credit: Eric J. Pogue / Dr. Ray Klump
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>WEBAPP: MATCHMAKER</title>
+    </head>
+    <body>
+        <h1>MatchMaker for the Web</h1>
+        <h2>Written by Jason Yescas</h2>
+        <p>This web application will gauge your similarity with the writer by
+        asking a series of questions.</p>
+        
+        <h2>Instructions:</h2>
+        <p>Your task is to respond to each question honestly using the
+        drop down menues provided.<br>
+        You can input either:<br><br>
+        - Strongly Agree<br>
+        - Agree<br>
+        - Neutral / No Opinion<br>
+        - Disagree<br>
+        - Strongly Disagree</p>
+
+        <label>Do you think birds make good pets?</label><br />
+        <select id="q1">
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Neutral / No Opinion</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+        <label>Would you consider yourself an outdoor person?</label><br />
+        <select id="q2">
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Neutral / No Opinion</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+        <label>Are you a coffee person?</label><br />
+        <select id="q3">
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Neutral / No Opinion</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+        <label>Do you believe in Astrology?</label><br />
+        <select id="q4">
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Neutral / No Opinion</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+        <label>Are you interested in politics?</label><br />
+        <select id="q5">
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Neutral / No Opinion</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br /><br />
+
+        <button onclick="calculateSimilarity()">Click here to calculate similarity</button>
+        <p id="similarity"></p>
+
+    <script>
+        console.log("Opening MatchMaker Web Application...");
+
+        function calculateSimilarity() {
+            console.log("calculateSimilarity()");
+
+            const GOOD_REPLY = [
+                5, /* strongly agree */
+                2, /* agree */
+                5, /* neutral */
+                1, /* disagree */
+                2, /* strongly disagree */
+            ]
+
+            const MAX_POINTS = 15;
+            
+            let question1Reply = document.getElementById('q1').selectedOptions[0].value;
+            let question2Reply = document.getElementById('q2').selectedOptions[0].value;
+            let question3Reply = document.getElementById('q3').selectedOptions[0].value;
+            let question4Reply = document.getElementById('q4').selectedOptions[0].value;
+            let question5Reply = document.getElementById('q5').selectedOptions[0].value;
+
+            console.log("Question 1 Answer:");
+            console.log(document.getElementById("q1").selectedOptions[0].text);
+            console.log(document.getElementById("q1").selectedOptions[0].value);
+            console.log(question1Reply);
+
+            console.log("Question 2 Answer:");
+            console.log(document.getElementById("q2").selectedOptions[0].text);
+            console.log(document.getElementById("q2").selectedOptions[0].value);
+            console.log(question2Reply);
+
+            console.log("Question 3 Answer:");
+            console.log(document.getElementById("q3").selectedOptions[0].text);
+            console.log(document.getElementById("q3").selectedOptions[0].value);
+            console.log(question3Reply);
+
+            console.log("Question 4 Answer:");
+            console.log(document.getElementById("q4").selectedOptions[0].text);
+            console.log(document.getElementById("q4").selectedOptions[0].value);
+            console.log(question4Reply);
+
+            console.log("Question 5 Answer:");
+            console.log(document.getElementById("q5").selectedOptions[0].text);
+            console.log(document.getElementById("q5").selectedOptions[0].value);
+            console.log(question5Reply);
+
+            let question1Similarity = 5 - Math.abs(question1Reply - GOOD_REPLY[0]);
+            let question2Similarity = 5 - Math.abs(question2Reply - GOOD_REPLY[1]);
+            let question3Similarity = 5 - Math.abs(question3Reply - GOOD_REPLY[2]);
+            let question4Similarity = 5 - Math.abs(question4Reply - GOOD_REPLY[3]);
+            let question5Similarity = 5 - Math.abs(question5Reply - GOOD_REPLY[4]);
+
+            console.log("s1="+question1Similarity);
+            console.log("s2="+question2Similarity);
+            console.log("s3="+question3Similarity);
+            console.log("s4="+question4Similarity);
+            console.log("s5="+question5Similarity);
+
+            let totalSimilarity = question1Similarity + question2Similarity + question3Similarity + question4Similarity + question5Similarity;
+
+            totalSimilarity *= 100 / MAX_POINTS;
+            totalSimilarity = Math.round(totalSimilarity);
+            console.log("tc="+ totalSimilarity);
+
+            document.getElementById("similarity").innerHTML = "Your similarity is: " + totalSimilarity;
+        }
+
+    </script>
+
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
